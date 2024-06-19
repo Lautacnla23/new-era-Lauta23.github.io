@@ -1,0 +1,792 @@
+@import url('https://fonts.googleapis.com/css2?family=Pragati+Narrow:wght@400&display=swap');
+
+/* Asegurar que el padding y borde se incluyan en el tamaño total del elemento */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Evitar overflow horizontal */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Evita la barra de desplazamiento horizontal */
+}
+
+/* info-container */
+.info-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(35, 31, 32);
+    color: white;
+    padding: 5px 10px;
+    font-family: 'Pragati Narrow', sans-serif;
+    font-weight: 200;
+    width: 100%;
+}
+
+.info-container p {
+    margin: 0px;
+}
+
+.info-container .login-link {
+    color: white;
+    text-decoration: none;
+    transition: text-decoration 0.3s;
+}
+
+.info-container .login-link:hover {
+    text-decoration: underline;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: top 0.3s;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+nav a {
+    font-family: 'Pragati Narrow', sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    margin: 0px 20px;
+    position: relative;
+}
+
+/* Animación del subrayado para los elementos específicos de navegación */
+nav a.nav-link {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    padding: 10px;
+}
+
+/* Pseudo-elemento ::after para la línea de subrayado */
+nav a.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 50%; /* Posicionamos inicialmente en el centro horizontal */
+    bottom: 0;
+    width: 0; /* Inicialmente sin ancho */
+    height: 4px;
+    background-color: rgb(255, 0, 0);
+    transition: width 0.3s ease-in-out, left 0.3s ease-in-out; /* Animamos el ancho y la posición horizontal */
+    transform: translateX(-50%) scaleX(0); /* Centramos horizontalmente y inicialmente sin ancho */
+    transform-origin: bottom center; /* Origen de la transformación en el centro horizontal */
+}
+
+/* Subrayado animado al pasar el mouse */
+nav a.nav-link:hover::after {
+    width: 100%; /* Expandimos el ancho al 100% */
+    left: 0; /* Movemos el inicio al borde izquierdo */
+    transform: translateX(0) scaleX(1); /* Volvemos a la posición original y mostramos */
+}
+
+
+/* Asegúrate de que el contenedor principal de navegación posicione sus hijos correctamente */
+.nav-item {
+    position: relative;
+    display: inline-block;
+    font-family: 'Pragati Narrow', sans-serif; /* Fuente para todo el nav-item */
+}
+
+/* Estilo del contenido del submenú (oculto por defecto) */
+.submenu-content {
+    display: none;
+    margin: 11px;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 900px; /* Ajusta el ancho según sea necesario */
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    box-shadow: 0px 20px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Estilo del bloque dentro del submenú */
+.submenu-block {
+    display: flex;
+    padding: 20px;
+    background-color: #fff;
+    height: 400px; /* Ajusta la altura según sea necesario */
+}
+
+/* Mostrar el submenú cuando tiene la clase 'show' */
+.nav-item.show .submenu-content {
+    display: block;
+}
+
+/* Estilo para los enlaces del submenú */
+.submenu-block a {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    text-decoration: none;
+    color: #000;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Subrayado en el texto al pasar el mouse */
+.submenu-block a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px; /* Grosor de la línea de subrayado */
+    background-color: #000;
+    left: 0;
+    bottom: 0;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.ui-submenu-item a:hover::after {
+    transform: scaleX(1);
+}
+
+/* Estilo específico para la estructura deseada */
+.item-submenu-header, .submenu-section-content {
+    flex: 1; /* Distribuye el espacio de manera uniforme */
+}
+.item-submenu-header{
+    border-right: 1px solid #000000; /* Línea separadora */
+}
+
+.item-submenu-header a {
+    border-left: 4px solid transparent; /* Inicialmente transparente para ocupar espacio */
+    padding-right: 20px; /* Espacio para el contenido */
+    transition: border-left-color 0.3s ease; /* Transición de color del borde izquierdo */
+}
+
+.item-submenu-header a:hover {
+    border-left-color: #000000; /* Cambia el color del borde izquierdo al pasar el mouse */
+}
+
+
+.submenu-section-content {
+    padding-left: 20px; /* Espacio para el contenido */
+}
+
+/* Fuente específica para el submenú */
+.item-submenu-header, .submenu-section-content {
+    font-family: 'Pragati Narrow', sans-serif;
+}
+
+/* Quitar puntos de las listas */
+.submenu-section-content ul {
+    list-style-type: none;
+    padding-left: 0; /* Elimina el relleno predeterminado de la lista */
+}
+
+/* Estilo para los elementos de la lista */
+.submenu-section-content li {
+    margin: 10px 0;
+}
+
+.submenu-section-content img {
+    width: 20px; /* Ajusta el tamaño de la imagen según lo necesites */
+    height: auto; /* Mantiene la proporción */
+    margin-right: 10px; /* Espacio entre imagen y texto */
+}
+
+.submenu-section-content p{
+    font-family: 'Pragati Narrow', sans-serif;
+    text-decoration: underline;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
+/* css search */
+.input-container {
+    width: 180px; /* Ancho fijo del contenedor */
+    position: relative;
+    overflow: hidden; /* Asegura que el contenido no se desborde */
+    margin-right: 10px; /* Ajuste el margen derecho según sea necesario */
+}
+
+.icon {
+    position: absolute;
+    right: 5px; /* Ajusta la posición derecha del ícono */
+    top: calc(50% + 5px);
+    transform: translateY(calc(-50% - 5px));
+}
+
+
+.input {
+    width: 100%; /* El input toma el 100% del ancho del contenedor */
+    max-width: 100%; /* No se expande más allá del contenedor */
+    height: 30px; /* Reducir la altura del input */
+    padding: 5px; /* Reducir el padding */
+    transition: .2s linear;
+    border: 2.5px solid black;
+    font-size: 12px; /* Reducir el tamaño de fuente */
+    text-transform: uppercase;
+    letter-spacing: 1.5px; /* Ajustar el espaciado de letras */
+    box-sizing: border-box; /* Incluir padding y borde en el tamaño total */
+}
+
+.input:focus {
+    outline: none;
+    border: 0.5px solid black;
+    box-shadow: -5px -5px 0px black;
+}
+
+.input-container:hover > .icon {
+    animation: anim 1s linear infinite;
+}
+
+@keyframes anim {
+    0%,
+    100% {
+        transform: translateY(calc(-50% - 5px)) scale(1);
+    }
+
+    50% {
+        transform: translateY(calc(-50% - 5px)) scale(1.1);
+    }
+}
+
+/* Estilos previamente proporcionados para el carrito */
+.cart-container {
+    position: relative;
+    margin-left: 10px;
+    margin-right: 40px;
+}
+
+.cart-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    text-decoration: none;
+    font-size: 36px;
+    transition: color 0.3s;
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.cart-link:hover {
+    color: red;
+}
+
+/* Nuevos estilos para el menú desplegable */
+.cart-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 400px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    display: none;
+    z-index: 1000; /* Asegura que el menú esté por encima de otros elementos */
+}
+
+.cart-items {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cart-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.cart-item-info {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cart-item img {
+    width: 90px; /* Ajusta el tamaño de las imágenes según tu preferencia */
+    height: 90px; /* Ajusta el tamaño de las imágenes según tu preferencia */
+    object-fit: cover;
+    margin-right: 15px; /* Añadido un poco más de espacio entre la imagen y el texto */
+}
+
+.cart-item-name {
+    font-weight: bold;
+    max-width: calc(100% - 85px); /* Ajusta según el espacio restante después de la imagen */
+}
+.cart-item-price {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.cart-item-gender {
+    font-size: 12px;
+    color: #888;
+}
+
+.cart-summary {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-products,
+.total-amount {
+    margin-bottom: 5px;
+}
+
+.checkout-button {
+    padding: 10px 20px;
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.checkout-button:hover {
+    background-color: #ff0000;
+}
+
+.empty-cart-button{
+    background-color: rgb(35, 31, 32);
+    color: #ffffff;
+    font-size:'Pragati Narrow', sans-serif ;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.empty-cart-button:hover {
+    background-color: #ff0000;
+}
+
+/*categorias gorras*/
+.lista-productos-container h2{
+    font-family: 'Pragati Narrow', sans-serif;
+    font-size: 25px;
+    padding-left: 20px ;
+}
+
+.titulo-categorias {
+    font-family: "Pragati Bold",sans-serif;
+    font-size: 38px;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 10px;
+    text-align: center;
+}
+
+.categorias-gorras {
+    display: flex;
+    justify-content: center;
+    gap: 90px;
+    border-bottom: 2px solid rgb(0, 0, 0) ;
+    margin: 0px 100px;
+}
+
+.categorias-gorras-div {
+    flex-direction: column;
+}
+
+.text-categoria {
+    margin-left: 40px ;
+}
+
+.text-categoria:hover {
+    text-decoration: underline;
+}
+
+.categorias-gorras a{
+    text-decoration: none;
+    color: #000;
+    font-family: "Pragati Bold",sans-serif;
+    font-weight: 600;
+}
+
+
+/*card-categorias*/
+.card-categoria {
+    position: relative;
+    width: 170px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-categoria span {
+    position: absolute;
+    top: 0;
+    left: calc(100% / 6 * var(--i));
+    width: calc(100% / 6);
+    height: 100%;
+}
+
+.card-categoria img{
+    position: absolute;
+    top: 0;
+    Left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.card-categoria img:nth-child(2),.card-categoria span:hover + img {
+    opacity: 1;
+}
+
+/* botones ordenamiento */
+.product-filters {
+    display: flex;
+    justify-content: center; /* Alinea los elementos al final del contenedor */
+    padding-top: 20px;
+    margin-right: 20px; /* Margen derecho para separarlo del borde de la página */
+}
+
+#filters{
+    margin-left: 100px;
+}
+
+#clearFilters {
+    margin-left: 5px;
+    background-color: rgb(55, 55, 58);
+    color: #ffffff;
+}
+
+#clearFilters:hover {
+    background-color: rgb(12, 12, 12);
+}
+
+/* Estilo para el label */
+.product-filters label {
+    color: #000000; /* Color del texto del label */
+    padding-right: 10px;
+}
+
+/* Estilo para el select */
+.product-filters select {
+    background-color: rgb(55, 55, 58); /* Color de fondo del select */
+    color: #ffffff; /* Color del texto dentro del select */
+    border: 1px solid rgb(55, 55, 58); /* Borde del select */
+    padding: 5px; /* Espaciado interno del select */
+    margin-right: 60px;
+    size: 20px;
+}
+
+/* Filtros desplegables */
+#filters h3 {
+    cursor: pointer; /* Cambia el cursor para indicar que es interactivo */
+    margin-bottom: 10px; /* Margen inferior para separar del contenido */
+}
+
+/* Opciones de filtro */
+#filters .filter-options {
+    display: none; /* Oculta las opciones por defecto */
+    margin-bottom: 20px; /* Margen inferior para separar del contenido siguiente */
+    transition: max-height 0.5s ease, opacity 0.5s ease; /* Transición para max-height y opacidad */
+    overflow: hidden; /* Oculta el contenido cuando está colapsado */
+    max-height: 0; /* Altura máxima inicial */
+    opacity: 0; /* Opacidad inicial */
+}
+
+#filters .filter-options.show {
+    display: block; /* Muestra las opciones cuando tiene la clase 'show' */
+    max-height: 200px; /* Altura máxima cuando está expandido */
+    opacity: 1; /* Opacidad cuando está expandido */
+}
+
+
+/*productos*/
+/* Estilo para el contenedor de productos */
+#productContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Cuatro columnas de igual tamaño */
+    gap: 20px; /* Espacio entre los productos */
+    margin: 0px 100px; /* Mismo margen que categoria-gorras */
+    margin-bottom: 40px;
+}
+
+/* Estilo para los productos */
+.product {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    position: relative; /* Permite posicionar el overlay */
+    width: 100%; /* Ajuste automático al contenedor */
+    border: 1px solid #000000; /* Borde sólido */
+    border-radius: 8px; /* Bordes redondeados */
+    overflow: hidden; /* Oculta el overflow del overlay */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    min-height: 350px; /* Ajusta según sea necesario para una altura mínima */
+    margin: 20px 0; /* Margen vertical entre los productos */
+}
+
+/* Estilo para la imagen del producto */
+.product img {
+    width: 100%; /* Imagen ocupa todo el ancho del contenedor */
+    height: auto; /* Altura automática */
+    display: block;
+    border-top-left-radius: 8px; /* Bordes redondeados en la esquina superior izquierda */
+    border-top-right-radius: 8px; /* Bordes redondeados en la esquina superior derecha */
+    transition: transform 0.3s ease; /* Transición suave para la imagen */
+}
+
+.product:hover img {
+    transform: scale(1.1); /* Agrandar la imagen al pasar el mouse */
+}
+
+/* Estilo para el overlay (superposición) */
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(0, 0, 0); /* Fondo oscuro semi-transparente */
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: height 0.3s ease; /* Transición para la altura del overlay */
+}
+
+.product:hover .overlay {
+    height: 60px; /* Altura del overlay al pasar el mouse */
+}
+
+/* Estilo para el botón de comprar */
+.comprar-btn {
+    color: white;
+    background-color: #000000;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+}
+
+/* Estilo para el precio */
+.precio {
+    font-weight: 600;
+}
+
+
+/* Footer */
+.footer-area {
+    background-color: rgb(18, 18, 20);
+    padding: 40px 0;
+    color: #ffffff;
+}
+
+.footer-area .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Añadir flex-wrap para manejar el desbordamiento */
+}
+
+.footer-area .single-footer {
+    flex: 1 1 20%; /* Ajustar según sea necesario */
+    margin: 0 10px;
+    min-width: 150px; /* Ajustar según sea necesario */
+}
+
+.footer-area img.new-era-logo-footer {
+    max-width: 50%;
+    height: center;
+}
+
+.footer-area .footer-title {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.footer-area .footer-contact,
+.footer-area .footer-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-area .footer-contact li,
+.footer-area .footer-menu li {
+    margin-bottom: 10px;
+}
+
+.footer-area .footer-contact li span {
+    font-weight: bold;
+}
+
+.footer-area .footer-contact a,
+.footer-area .footer-menu a {
+    color: #ffffff;
+    text-decoration: none;
+    font-family: "Pragati Narrow";
+}
+
+.footer-area .footer-contact a:hover,
+.footer-area .footer-menu a:hover {
+    text-decoration: underline;
+}
+
+.footer-area .button-one {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.footer-area .button-one:hover {
+    background-color: #000;
+}
+
+@media (max-width: 991px) {
+    .footer-area .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-area .single-footer {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+}
+
+/*iconos de redes*/
+.card {
+    width: fit-content;
+    height: fit-content;
+    background-color: rgb(18, 18, 20);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 25px;
+    gap: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.055);
+}
+  
+/* for all social containers*/
+.socialContainer {
+    width: 52px;
+    height: 52px;
+    background-color: rgb(44, 44, 44);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition-duration: .3s;
+}
+/* instagram*/
+.containerOne:hover {
+    background-color: #d62976;
+    transition-duration: .3s;
+}
+/* twitter*/
+.containerTwo:hover {
+    background-color: #00acee;
+    transition-duration: .3s;
+}  
+.socialContainer:active {
+    transform: scale(0.9);
+    transition-duration: .3s;
+}
+  
+.socialSvg {
+    width: 17px;
+}
+  
+.socialSvg path {
+    fill: rgb(255, 255, 255);
+}
+  
+.socialContainer:hover .socialSvg {
+    animation: slide-in-top 0.3s both;
+}
+  
+@keyframes slide-in-top {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Copyright Area */
+.copyright-area {
+    background-color: rgb(12, 12, 12); /* Color de fondo */
+    color: rgb(85, 77, 79); /* Color del texto */
+    padding: 20px 0; /* Espaciado superior e inferior */
+    margin-top: 1px;
+}
+
+.copyright-area a {
+    color: rgb(85, 77, 79); /* Color del texto del enlace */
+    text-decoration: none;
+}

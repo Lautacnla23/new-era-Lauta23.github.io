@@ -25,9 +25,9 @@ document.querySelectorAll('.talle').forEach(talle => {
 });
 
 document.querySelector('.btn-agregar-carrito').addEventListener('click', () => {
-    const id = '1';
+    const id = '3';
     const nombre = 'Gorra New Era Los Angeles Dodgers 59FIFTY MLB Basic';
-    const precio = '$99.99';
+    const precio = '$20';
     const imagen = 'imagenes/productos/gorra3.jpg';
     const genero = 'Unisex';
     const talle = obtenerTalleSeleccionado();
@@ -43,11 +43,11 @@ document.querySelector('.btn-agregar-carrito').addEventListener('click', () => {
 });
 
 document.querySelector('.btn-comprar-ahora').addEventListener('click', () => {
-    const id = '1';
+    const id = '3';
     const nombre = 'Gorra New Era Los Angeles Dodgers 59FIFTY MLB Basic';
-    const precio = '$99.99';
+    const precio = '$20';
     const imagen = 'imagenes/productos/gorra3.jpg';
-    const genero = 'Unisex';
+    const genero = 'Hombre';
     const talle = obtenerTalleSeleccionado();
     const cantidad = parseInt(document.getElementById('cantidad').value);
 
@@ -59,4 +59,5 @@ document.querySelector('.btn-comprar-ahora').addEventListener('click', () => {
     const producto = { id, nombre, precio, imagen, genero, talle, quantity: cantidad };
     addToCart(producto);
     window.location.href = 'checkout.html';
+
 });
